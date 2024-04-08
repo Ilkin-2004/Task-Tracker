@@ -1,72 +1,92 @@
-let number = 0;
-let a = 0;
-let b = 0;
-const addButton = document.querySelector('.add')
-const plusButton = document.querySelector('.plus')
-const input = document.querySelector('input')
+let stopPluss = 0;
+let stopAddBUtton=0;
+const addButton = document.querySelector('.add');
+const sortButton = document.querySelector('.down_arrow')
 const ul = document.querySelector('ul')
-const mainLi = document.querySelector('.fli')
-addButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (b == 0) {
-        if (number === 0) {
-            const myButton = document.createElement('button')
-            myButton.textContent = 'x'
-            myButton.setAttribute('class', 'rmvButton')
-            const myLi = document.createElement('li');
-            myLi.textContent = input.value;
-            ul.append(myLi)
-            myLi.append(myButton)
-            mainLi.remove();
-            myButton.addEventListener('click', () => {
-                myLi.remove()
-
-            })
-        }
-        else {
-            const myButton = document.createElement('button')
-            myButton.innerText = 'x'
-            myButton.setAttribute('class', 'rmvButton')
-            const myLi = document.createElement('li');
-            myLi.textContent = input.value;
-            ul.append(myLi)
-            myLi.append(myButton)
-            const li = document.querySelector('.fli')
-            li.remove();
-            number = 0;
-            myButton.addEventListener('click', () => {
-                myLi.remove()
-
-            })
-            b++;
-        }
-        a = 0;
-    } else {
-        alert("add etmek ucun evvelce +a basaraq melumati daxil edin")
+const plusButton = document.querySelector('.plus');
+let myArrayList = [];
+const deleteButtons = document.getElementsByClassName('rmvButton');
+addButton.addEventListener('click', () => {
+    if(stopAddBUtton===0){
+    const input = document.querySelector('input')
+    if (input.value === '') {
+        alert('bos melumat daxil edin')
     }
-})
-plusButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (a == 0) {
-        const myLi = document.createElement('li')
-        myLi.setAttribute('class', 'fli')
+    else {
+        let li = document.querySelector('.myInputLi')
+        let myLi = document.createElement('li');
+        let myRmvBut = document.createElement('button');
+        myRmvBut.addEventListener('click',(e)=>{
+            console.log( e.target.previousElementSibling.innerText)
+            myArrayList=myArrayList.filter(item=>item!==e.target.previousElementSibling.innerText)
+            e.target.parentElement.remove()
+           
+           })
+        let myText=document.createElement('p')
+        myText.setAttribute('class','input')
+        myRmvBut.setAttribute('class', 'rmvButton')
+        myRmvBut.innerText = 'x';
+        myLi.setAttribute('class', 'inputLi')
+        myLi.append(myText)
+        myLi.append(myRmvBut)
+        myText.innerText = input.value.trim();
         ul.append(myLi)
-        let myInputli = document.createElement('input')
-        input.setAttribute('class', 'input')
-        myInputli.textContent = ""
-        myLi.append(input)
-        a++;
-        number++;
-    } else {
-        alert("add etmeden olmaz")
+        li.remove();
+        myArrayList.push(myText.innerText)
+        stopPluss = 0;
+        stopAddBUtton++;
     }
-    b = 0;
+    
+    }
+    else{
+        alert("+ duymesini basin")
+    }
 })
 
-
-
-
-
-
+plusButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (stopPluss !== 0) {
+        alert("add etmemis olmaz")
+    } else {
+        let newLi = document.createElement('li')
+        let input = document.createElement('input')
+        let newRmvButton = document.createElement('button');
+        newRmvButton.setAttribute('class', 'rmvButton')
+        newRmvButton.textContent = 'x';
+       
+        input.setAttribute('class', 'input');
+        newLi.setAttribute('class','myInputLi');
+        newLi.appendChild(input);
+        newLi.appendChild(newRmvButton);
+        ul.append(newLi);
+        stopPluss++;
+        stopAddBUtton=0;
+    }
+})
+sortButton.addEventListener('click',() => {
+    if (sortButton.getAttribute('src') === 'Group 34.png') {
+        const liList=document.querySelectorAll("li p")
+        myArrayList.sort();
+        myArrayList.forEach((item,index)=>{
+            liList[index].innerText=myArrayList[index]
+        })
+        sortButton.setAttribute('src','Group 91 (1).png')
+    }
+    else{
+        const liList=document.querySelectorAll("li p")
+        myArrayList.sort().reverse();
+      
+        
+        myArrayList.forEach((item,index)=>{
+            liList[index].innerText=myArrayList[index]
+        })
+        sortButton.setAttribute('src','Group 34.png')
+    }
+})
+// delete
+// deleteButtons.addEventListener((e)=>{
+// deleteButtons.forEach((button,index)=>{
+   
+// })
+// })
 
