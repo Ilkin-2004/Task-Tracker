@@ -7,12 +7,14 @@
     text-align: center;
     padding-bottom: 5px;
 }
-ul{
+
+ul {
     list-style: none;
     margin: auto;
     padding: 0;
 }
-.input{
+
+.input {
     padding: 3px;
     padding-left: 5px;
     border-radius: 10px;
@@ -21,15 +23,17 @@ ul{
     margin: auto;
     margin-right: 3px;
 }
-.liText{
+
+.liText {
     text-align: left;
     padding: 3px;
     padding-left: 5px;
     border-radius: 10px;
     width: 230px;
     border: none;
-    margin: auto; 
+    margin: auto;
 }
+
 .headDiv {
     border-radius: 10px 10px 0 0;
     width: 100%;
@@ -49,7 +53,7 @@ h1 {
     margin-right: 30px;
 }
 
-.form {   
+.form {
     padding: 1px;
     margin: auto;
     display: flex;
@@ -60,7 +64,7 @@ h1 {
     border: 1px solid gray;
 }
 
-.rmvButton{
+.rmvButton {
     display: flex;
     margin-left: auto;
     text-align: center;
@@ -93,9 +97,10 @@ h1 {
 }
 
 .plus p {
-  margin-top: 13px;
+    margin-top: 13px;
 }
-.inputLi{
+
+.inputLi {
     display: flex;
     border: 1px solid gray;
     border-radius: 20px;
@@ -103,7 +108,8 @@ h1 {
     min-width: 260px;
     margin: 5px;
 }
-.myInputLi{
+
+.myInputLi {
     display: flex;
     border: 1px solid gray;
     border-radius: 20px;
